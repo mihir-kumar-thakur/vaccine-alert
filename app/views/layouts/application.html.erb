@@ -2,6 +2,15 @@
 <html>
   <head>
     <%= render 'shared/head' %>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "5cc60976-b54a-4e5b-82b2-d237f60628a5",
+        });
+      });
+    </script>
   </head>
 
   <body>
