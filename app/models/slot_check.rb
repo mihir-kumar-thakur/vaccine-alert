@@ -4,7 +4,6 @@ require 'uri'
 class SlotCheck
   def self.run
     begin
-      # District - Pune, Date - Today's date. You can modify it as per your requirement.
       results = JSON.parse(fetch_calender).with_indifferent_access
 
       availability = {}
