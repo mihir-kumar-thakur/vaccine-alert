@@ -1,6 +1,5 @@
 require 'net/http'
 require 'uri'
-require 'puppeteer'
 
 class SlotCheck
   def self.run
@@ -54,14 +53,6 @@ class SlotCheck
     notification = OneSignal::Notification.new(included_segments: included_segments, template_id: "409b002d-9594-4bd1-a767-43965c56b8fe")
 
     response = OneSignal.send_notification(notification)
-  end
-
-  def self.check_puppeter
-    Puppeteer.launch(headless: false) do |browser|
-      page = browser.pages.first || browser.new_page
-      page.goto("https://github.com/YusukeIwaki")
-      page.screenshot(path: "YusukeIwaki.png")
-    end
   end
 end
 
