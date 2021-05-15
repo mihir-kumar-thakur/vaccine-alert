@@ -48,10 +48,12 @@ class SlotCheck
   end
 
   def self.send_notification
-    # Create headings for different languages. English is required.
-    headings = OneSignal::Notification::Headings.new(en: 'Vaccination slot available at Rajnagar. Book your appointment!')
+    # Select the included (and/or excluded) segments to target
+    included_segments = [OneSignal::Segment::ACTIVE_USERS]
+
     # Create the Notification object
-    notification = OneSignal::Notification.new(headings: headings)
-    OneSignal.send_notification(notification)
+    notification = OneSignal::Notification.new(included_segments: included_segments, template_id: "409b002d-9594-4bd1-a767-43965c56b8fe")
+
+    response = OneSignal.send_notification(notification)
   end
 end
