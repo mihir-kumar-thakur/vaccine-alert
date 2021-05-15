@@ -20,7 +20,9 @@ class SlotCheck
       send_notification
     end
 
-    send_notification
+    if availability[847226].present?
+      send_notification
+    end
   end
 
   def self.fetch_calender
