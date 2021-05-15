@@ -17,8 +17,6 @@ class SlotCheck
     if availability[847235].present?
       send_notification
     end
-
-    send_notification
   end
 
   def self.send_notification
