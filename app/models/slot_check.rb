@@ -47,7 +47,7 @@ class SlotCheck
     `
   end
 
-  def send_notification
+  def self.send_notification
     # Create headings for different languages. English is required.
     headings = OneSignal::Notification::Headings.new(en: 'Vaccination slot available at Rajnagar. Book your appointment!')
     # Create the Notification object
