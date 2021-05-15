@@ -3,28 +3,24 @@ require 'uri'
 
 class SlotCheck
   def self.run
-    begin
-      results = JSON.parse(fetch_calender).with_indifferent_access
+    results = JSON.parse(fetch_calender).with_indifferent_access
 
-      availability = {}
-      results[:centers].each do |center|
-          # 1st condition - Checking Age
-          sessions = center[:sessions].select{ |c| c[:min_age_limit] == 18 }
-          # 2nd condition - Checking Availability
-          sessions_with_availability = sessions.select{ |s| s[:available_capacity] > 0 }
-          # Collect date for specific pincode if there's vaccine availability
-          availability[center[:pincode]] = sessions_with_availability.collect{ |s| s[:date] } if sessions_with_availability.any?
-      end
-
-      # {413102=>["10-05-2021"], 411044=>["11-05-2021"]}
-      if availability[847235].present?
-        send_notification
-      end
-
-    rescue Exception => e
-
+    availability = {}
+    results[:centers].each do |center|
+        # 1st condition - Checking Age
+        sessions = center[:sessions].select{ |c| c[:min_age_limit] == 18 }
+        # 2nd condition - Checking Availability
+        sessions_with_availability = sessions.select{ |s| s[:available_capacity] > 0 }
+        # Collect date for specific pincode if there's vaccine availability
+        availability[center[:pincode]] = sessions_with_availability.collect{ |s| s[:date] } if sessions_with_availability.any?
     end
 
+    # {413102=>["10-05-2021"], 411044=>["11-05-2021"]}
+    if availability[847235].present?
+      send_notification
+    end
+
+    send_notification
   end
 
   def self.fetch_calender
