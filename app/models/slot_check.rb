@@ -64,3 +64,4 @@ class SlotCheck
     end
   end
 end
+
