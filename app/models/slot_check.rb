@@ -14,7 +14,7 @@ class SlotCheck
     end
 
     # {413102=>["10-05-2021"], 411044=>["11-05-2021"]}
-    if availability[847235].present?
+    if availability[226016].present?
       send_notification
     end
   end
